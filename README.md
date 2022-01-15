@@ -1,2 +1,2 @@
 # Hangman
-Jeu de pendu
+Jeu du pendu
