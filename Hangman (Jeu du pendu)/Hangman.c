@@ -6,25 +6,28 @@
 #include <time.h>
 #include <string.h>
 
-#define SIZE_MAX 20	// taille maxi du mot
+#define SIZE_MAX 30	// taille maxi du mot
 
+
+void checkfile(char check)
+{
+	if (check != NULL)
+	{
+		perror("WARNING => ");
+	}
+}
 
 int main(int argc, char* argv[])
 {
 	
 	char word2guess[SIZE_MAX]="caca";
 
-
-	
 	FILE* file = NULL;
 	int lines = 1;
 	int read = 0;
 	file = fopen("biblio.txt", "r");
-	if (file == NULL) 
-	{ 
-		return 0;
-	}
-	
+	checkfile(file);
+
 	//Compte le nombe de lignes dans le fichier et définir la taille du tableau à remplir
 	while (read = getc(file), read != EOF)
 	{
@@ -32,10 +35,9 @@ int main(int argc, char* argv[])
 			lines++;
 
 	}
-	// printf("%d", lines);
+	//printf("Nm lignes = %d\n", lines);
 	
-	// Allocation de la mémoire pour le tableau à remplir 
-
+	checkfile(file);
 
 	return 0;
 }
