@@ -11,9 +11,9 @@
 
 void checkfile(char check)
 {
-	if (check != NULL)
+	if (check == NULL)
 	{
-		perror("WARNING => ");
+		perror("ATTENTION, l'experience de jeu risque d'etre alteree => ");
 	}
 }
 
@@ -23,8 +23,8 @@ int main(int argc, char* argv[])
 	char word2guess[SIZE_MAX]="caca";
 
 	FILE* file = NULL;
-	int lines = 1;
-	int read = 0;
+	int lines = 1, read = 0, min = 0, index = 0;
+
 	file = fopen("biblio.txt", "r");
 	checkfile(file);
 
@@ -36,8 +36,12 @@ int main(int argc, char* argv[])
 
 	}
 	//printf("Nm lignes = %d\n", lines);
+	fclose(file);
 	
-	checkfile(file);
+	//Generer nombre aleatoire
+	srand(time(NULL));
+	index = (rand() % (lines - min + 1) + min);
+	//printf("index = %d\n", index);
 
 	return 0;
 }
