@@ -8,7 +8,6 @@
 
 #define SIZE_MAX 30	// taille maxi du mot
 
-
 void checkfile(char check)
 {
 	if (check == NULL)
@@ -19,42 +18,44 @@ void checkfile(char check)
 
 int main(int argc, char* argv[])
 {
-	
-	char word2guess[SIZE_MAX] = { NULL };
-
 	FILE* file = NULL;
-	int lines = 1, read = 0, min = 0, index = 0, linesCount = 0;
+	char choice[SIZE_MAX] = { NULL };
+	
+	int lines = 1, read = 0, min = 0, index = 0, length = 0;
 
+	//Compte le nombre de lignes dans le fichier biblio.txt
 	file = fopen("biblio.txt", "r");
 	checkfile(file);
-
-	//Compte le nombe de lignes dans le fichier et définir la taille du tableau à remplir
 	while (read = getc(file), read != EOF)
 	{
 		if (read == '\n')
 			lines++;
 
 	}
-	
+	/*printf("Nb lignes du fichier texte = %d\n", lines);*/
 	fclose(file);
 	
-	//Generer nombre aleatoire
+	//Genere un nombre aleatoire
 	srand(time(NULL));
 	index = (rand() % (lines - min + 1) + min);
 
-	//Choisir un mot dans la biblio.txt en fonction de ce nombre aléatoire
+	//Choisit un mot dans la biblio.txt en fonction du nombre aleatoir genere
 	lines = 0;
-	printf("Nb lignes = %d\n", lines);
 	file = fopen("biblio.txt", "r");
 	while (index != lines)
 	{
 		lines++;
-		fgets(word2guess, SIZE_MAX, file);
+		fgets(choice, SIZE_MAX, file);
+		length = strlen(choice) - 1;
+		
 	}
 	fclose(file);
 
-	printf("index = %d\n", index);
-	printf("mot a deviner = %s\n", word2guess);
-	printf("Nb lignes = %d\n", lines);
+	/*printf("Nombre genere de maniere aleatoire = %d\n", index);*/
+	printf("Mot a deviner = %s\n", choice);
+	printf("Index du mot a deviner = %d\n", lines);
+	printf("Longueur du mot = %d\n", length);
+	printf("Size of = %d\n", sizeof(choice));
+	
 	return 0;
 }

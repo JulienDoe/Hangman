@@ -355,7 +355,7 @@ noir
 nouveau
 nouveau
 nuit
-numéro
+numero
 obliger
 occuper
 odeur
