@@ -20,10 +20,10 @@ void checkfile(char check)
 int main(int argc, char* argv[])
 {
 	
-	char word2guess[SIZE_MAX]="caca";
+	char word2guess[SIZE_MAX] = { NULL };
 
 	FILE* file = NULL;
-	int lines = 1, read = 0, min = 0, index = 0;
+	int lines = 1, read = 0, min = 0, index = 0, linesCount = 0;
 
 	file = fopen("biblio.txt", "r");
 	checkfile(file);
@@ -35,13 +35,26 @@ int main(int argc, char* argv[])
 			lines++;
 
 	}
-	//printf("Nm lignes = %d\n", lines);
+	
 	fclose(file);
 	
 	//Generer nombre aleatoire
 	srand(time(NULL));
 	index = (rand() % (lines - min + 1) + min);
-	//printf("index = %d\n", index);
 
+	//Choisir un mot dans la biblio.txt en fonction de ce nombre aléatoire
+	lines = 0;
+	printf("Nb lignes = %d\n", lines);
+	file = fopen("biblio.txt", "r");
+	while (index != lines)
+	{
+		lines++;
+		fgets(word2guess, SIZE_MAX, file);
+	}
+	fclose(file);
+
+	printf("index = %d\n", index);
+	printf("mot a deviner = %s\n", word2guess);
+	printf("Nb lignes = %d\n", lines);
 	return 0;
 }
