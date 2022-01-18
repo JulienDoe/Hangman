@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
 	FILE* file = NULL;
 	char *choice[SIZE_MAX] = { NULL };
 	char *word = { NULL };
-	int lines = 1, read = 0, min = 0, index = 0, length = 0;
+	int lines = 1, read = 0, min = 0, index = 0, length = 0, i = 0;
 
 	//Compte le nombre de lignes dans le fichier biblio.txt
 	file = fopen("biblio.txt", "r");
@@ -49,11 +49,11 @@ int main(int argc, char* argv[])
 	}
 	fclose(file);
 	length = strlen(choice)-1; // Nb de caracteres dans le mot
-	/*
+	
 	printf("Mot choisi = %s\n", choice);
 	printf("Index du mot choisi = %d\n", lines);
 	printf("Longueur du mot = %d\n", length);
-	*/
+	
 
 	//Affichage des regles 
 	printf("===== JEU DU PENDU =====\n\n");
@@ -65,8 +65,13 @@ int main(int argc, char* argv[])
 	printf("Le but est de deviner le mot complet.\n\n");
 	printf("Attention les accents ne sont pas permis, ni les majuscules.\n\n");
 	printf("=== A vous de jouer !===\n\n");
-
-
+	//Affichage du nombres 
+	printf("Le mot a deviner est le suivant.\nIl contient %d lettres.\n",length);
+	while (i < length)
+	{
+		printf(" _");
+		i++;
+	}
 
 	return 0;
 }
