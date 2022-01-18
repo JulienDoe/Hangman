@@ -19,8 +19,8 @@ void checkfile(char check)
 int main(int argc, char* argv[])
 {
 	FILE* file = NULL;
-	char choice[SIZE_MAX] = { NULL };
-	
+	char *choice[SIZE_MAX] = { NULL };
+	char *word = { NULL };
 	int lines = 1, read = 0, min = 0, index = 0, length = 0;
 
 	//Compte le nombre de lignes dans le fichier biblio.txt
@@ -39,23 +39,34 @@ int main(int argc, char* argv[])
 	srand(time(NULL));
 	index = (rand() % (lines - min + 1) + min);
 
-	//Choisit un mot dans la biblio.txt en fonction du nombre aleatoir genere
+	//Choisit un mot dans la biblio.txt en fonction du nombre aleatoire genere
 	lines = 0;
 	file = fopen("biblio.txt", "r");
 	while (index != lines)
 	{
 		lines++;
 		fgets(choice, SIZE_MAX, file);
-		length = strlen(choice) - 1;
-		
 	}
 	fclose(file);
-
-	/*printf("Nombre genere de maniere aleatoire = %d\n", index);*/
-	printf("Mot a deviner = %s\n", choice);
-	printf("Index du mot a deviner = %d\n", lines);
+	length = strlen(choice)-1; // Nb de caracteres dans le mot
+	/*
+	printf("Mot choisi = %s\n", choice);
+	printf("Index du mot choisi = %d\n", lines);
 	printf("Longueur du mot = %d\n", length);
-	printf("Size of = %d\n", sizeof(choice));
-	
+	*/
+
+	//Affichage des regles 
+	printf("===== JEU DU PENDU =====\n\n");
+	printf("Le jeu du Pendu est un jeu tres connu dans lequel vous devez devener le mot choisi par la machine\n");
+	printf("Vous avez 9 essais pour essayer de deviner le mot.\n");
+	printf("Vous devez choisir une lettre dans l'alphabet.\n");
+	printf("Si cette lettre est presente dans le mot à devenir, alors les blancs (tirets) se rempliront.\n");
+	printf("Petit a petit, vous verrez apparaitre le mot.\n");
+	printf("Le but est de deviner le mot complet.\n\n");
+	printf("Attention les accents ne sont pas permis, ni les majuscules.\n\n");
+	printf("=== A vous de jouer !===\n\n");
+
+
+
 	return 0;
 }
