@@ -130,7 +130,7 @@ croire
 cuisine
 dame
 danser
-début
+debut
 decider
 decouvrir
 degager
