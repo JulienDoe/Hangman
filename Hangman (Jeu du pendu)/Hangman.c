@@ -48,6 +48,17 @@ int research(char carac, char choice[], int* letter)
 	}
 }
 
+int gameover(int* letter, int length)
+{
+	int win = 1;
+	for (int i = 0; i < length; i++)
+	{
+		if (letter[i] == 0)
+			win = 0;
+	}
+	return win;
+}
+
 int main(int argc, char* argv[])
 {
 	FILE* file = NULL;
@@ -104,27 +115,36 @@ int main(int argc, char* argv[])
 	//Initialisation tableau
 	letter = malloc(length * sizeof(int));
 	initTab(letter, length);
-
-	printf("\nIl vous reste encore %d pour trouver le mot", remain);
-	printf("\nLe mot a trouver est le suivant :\n==> ");
-
-	//On affiche le mot secret en masquant les lettres non trouvées
-	for (int i = 0; i < length; i++)
+	while (remain > 0 && !gameover(letter, length))
 	{
-		if (letter[i])
-			printf("%c ", choice[i]);
+
+
+		printf("\nIl vous reste encore %d pour trouver le mot", remain);
+		printf("\nLe mot a trouver est le suivant :\n==> ");
+
+		//On affiche le mot secret en masquant les lettres non trouvées
+		for (int i = 0; i < length; i++)
+		{
+			if (letter[i])
+				printf("%c ", choice[i]);
+			else
+				printf("_ ");
+		}
+
+		printf("\n\nQuelle lettre proposes-tu ? ");
+		carac = reading();
+
+		if (!research(carac, choice, letter))
+			remain--;
 		else
-			printf("_ ");
+			printf("\nCette lettre n'est pas le mot a deviner.");
 	}
-
-	printf("\n\nQuelle lettre proposes-tu ? ");
-	carac = reading();
-
-	if (!research(carac, choice, letter))
-		remain--;
+	if (gameover(letter, length))
+		printf("\n\n --- C'EST GAGNE --- Le mot etait bien : %s\n", choice);
 	else
-		printf("\nCette lettre n'est pas le mot a deviner.");
-
+		printf("\n\n Dommage, le mot a devine etait : %s\n", choice);
+	
 	free(letter);
 	return 0;
 }
+
