@@ -62,12 +62,12 @@ int gameover(int* letter, int length)
 int main(int argc, char* argv[])
 {
 	FILE* file = NULL;
-	char choice[SIZE_MAX] = "rouge", carac = 0;
+	char choice[SIZE_MAX] = { NULL }, carac = 0;
 	int lines = 1, read = 0, min = 0, index = 0, length = 0, remain = 10;
 	int *letter = NULL; // Tableau de booléens. Chaque case correspond à une lettre du mot secret. 0 = lettre non trouvée, 1 = lettre trouvée
 
 	//Code pour aller chercher dans un fichier texte => lecture de la chaine ne marche pas
-	/*//Compte le nombre de lignes dans le fichier biblio.txt
+	//Compte le nombre de lignes dans le fichier biblio.txt
 	file = fopen("biblio.txt", "r");
 	checkfile(file);
 	while (read = getc(file), read != EOF)
@@ -94,23 +94,11 @@ int main(int argc, char* argv[])
 	length = strlen(choice)-1; // Nb de caracteres dans le mot
 	
 	//Affiche le mot choisi
+	/*
 	printf("Mot choisi = %s\n", choice);
 	printf("Index du mot choisi = %d\n", lines);
 	printf("Longueur du mot = %d\n", length);
 	*/
-	//Affichage des regles
-	/*printf("===== JEU DU PENDU =====\n\n"
-	"Le jeu du Pendu est un jeu tres connu dans lequel vous devez devener le mot choisi par la machine\n"
-	"Vous avez 9 essais pour essayer de deviner le mot.\n"
-	"Vous devez choisir une lettre dans l'alphabet.\n"
-	"Si cette lettre est presente dans le mot à devenir, alors les blancs (tirets) se rempliront.\n"
-	"Petit a petit, vous verrez apparaitre le mot.\n"
-	"Le but est de deviner le mot complet.\n\n"
-	"Attention les accents ne sont pas permis, ni les majuscules.\n\n"
-	"=== A vous de jouer !===\n");
-	*/
-
-	length = strlen(choice);
 
 	//Initialisation tableau
 	letter = malloc(length * sizeof(int));
@@ -119,7 +107,7 @@ int main(int argc, char* argv[])
 	{
 
 
-		printf("\nIl vous reste encore %d pour trouver le mot", remain);
+		printf("\nIl vous reste encore %d essais pour trouver le mot", remain);
 		printf("\nLe mot a trouver est le suivant :\n==> ");
 
 		//On affiche le mot secret en masquant les lettres non trouvées

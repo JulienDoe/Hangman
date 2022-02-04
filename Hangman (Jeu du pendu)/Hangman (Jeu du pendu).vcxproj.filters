@@ -23,8 +23,5 @@
     <Text Include="biblio.txt">
       <Filter>Fichiers de ressources</Filter>
     </Text>
-    <Text Include="light.txt">
-      <Filter>Fichiers de ressources</Filter>
-    </Text>
   </ItemGroup>
 </Project>

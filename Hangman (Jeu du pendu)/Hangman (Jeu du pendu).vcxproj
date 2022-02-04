@@ -143,7 +143,6 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="biblio.txt" />
-    <Text Include="light.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
